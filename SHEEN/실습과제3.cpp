@@ -7,23 +7,23 @@ int main()
 	int evenCount=0, oddCount=0;
 	int max, min;
 	int number; //입력 받는 수 저장
-	do{
+	
 	printf("숫자를 입력하세요: ");
 	scanf("%d",&number);
-
-	  if (number % 2 ==0){
-              evenCount +=1;
-              max = number;
-              min = number;
-             
-            
-		 }
-		 else{
-			oddCount +=1;
-			   max = number;
-              min = number;
-		 }
-	} while(1);
+	 if (number % 2 ==0){
+	  evenCount +=1;
+	  max = number;
+	  min = number;
+	  
+	     
+	 }else{
+	     	  oddCount +=1;
+	  max = number;
+	  min = number;
+	     
+	 }
+	
+ while(1){
 		printf("숫자를 입력하세요: ");
 	scanf("%d",&number);
 	if (number == 0){
@@ -58,4 +58,5 @@ int main()
 	//최댓값, 최솟값 초기화
 	
 	//홀수,짝수 판별하여 개수를 저장한다.
+}
 }
