@@ -8,9 +8,10 @@ for i in range(len(strings)):
     except:
         continue
 
-strings = list(set(strings))
-for k in strings:
-    print(f"{k} {nomordic[k]}")
+nomordiclist = list(nomordic.items())
+nomordiclist.sort(key = lambda x: x[0])
+for name, value in nomordiclist:
+    print(f"{name} {value}")
 
 
 
