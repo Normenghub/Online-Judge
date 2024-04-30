@@ -17,7 +17,7 @@ for i in range(num):
 
 infor = sorted(infor, key = lambda x: (-x[0], x[1]))
 
-print(f"{infor[0][0]} {infor[0][1]}")
-
-
+print(f"{infor[0][0]} {infor[0][1]}") 
          
+
+# deque << 스택, 큐 한 번에 해결 가능          
