@@ -9,11 +9,7 @@ for k in array:
         nomordic[int(k)] +=1
     else:
         nomordic[int(k)] =1
-
-
 nomordic2 = dict(sorted(nomordic.items(), key = lambda x: x[1], reverse=True))
-
-
 realarray = list(nomordic2.keys())
 num = nomordic2[realarray[0]]
 re= []
