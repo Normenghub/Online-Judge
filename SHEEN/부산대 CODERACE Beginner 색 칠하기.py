@@ -36,3 +36,8 @@ def solution(maps,w,ccount,q):
 print(solution(maps,w,ccount,q))
 
 '''
+
+
+# 1 1 2 2 , 1 0 1 2, 1 1 1 0 2 2 2, 1 1 0 1 2 1 1\
+
+# 덧칠이 가능함. 0이 나오기전까지 1 ,2가 공존하면 +2 하면되고 만약에 1, 2 하나만 존재할시 +1 하면댐 

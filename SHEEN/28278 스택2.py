@@ -1,5 +1,6 @@
 from collections import deque
-
+import sys
+input = sys.stdin.readline
 q = deque()
 
 num = int(input())
@@ -12,8 +13,7 @@ for i in range(num):
         if len(q) == 0:
             print("-1")
         else:
-            print(q[len(q)-1])
-            q.pop()
+            print(q.pop())
     elif strings[0] == "3":
         print(len(q))           
     elif strings[0] == "4": 
@@ -22,7 +22,7 @@ for i in range(num):
         else:
             print(0)
     else:
-          if len(q) > 0:
-              print(q[len(q)-1])
+          if len(q) == 0:
+              print(-1)
           else:
-                               print(-1)
+            print(q[-1])
