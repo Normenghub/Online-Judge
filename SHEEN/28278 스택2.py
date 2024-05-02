@@ -8,7 +8,7 @@ num = int(input())
 for i in range(num):
     strings = input()
     if strings[0] == "1":
-        q.append(int(strings[2]))
+        q.append(int(strings[2:]))
     elif strings[0] == "2":  
         if len(q) == 0:
             print("-1")
@@ -21,7 +21,7 @@ for i in range(num):
             print(1)
         else:
             print(0)
-    else:
+    elif strings[0] == "5":
           if len(q) == 0:
               print(-1)
           else:
