@@ -1,15 +1,8 @@
-nomordic = {}
-sum =0
-a , b = map(int,input().split())
+import copy
+a = [1,2,3,4]
 
+b= copy.deepcopy(a)
 
-for i in range(a):
-    num1,num2 = map(str,input().split())
-    nomordic[num1] = num2
-
-sumlist = list(input().split())
-
-for k in range(b):
-    sum += int(nomordic[sumlist[k]])
-
-print(sum)
+a.append(4)
+print(a)
+print(b)
