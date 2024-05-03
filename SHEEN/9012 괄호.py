@@ -9,15 +9,15 @@ num= int(input())
 
 def solution(num,lists):
         strings = list(input().split())
-         for k in range(len(strings)):
+        for k in range(len(strings)):
             try:
-             if k == '(':
+             if strings[k] == '(':
                  lists.append(k)
              else:
                  lists.pop()
             except:
                 return "NO"
-         return "Yes"        
+        return "Yes"        
         
 for i in range(num):
     print(solution(num,lists))            
