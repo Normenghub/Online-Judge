@@ -6,18 +6,25 @@ lists = deque()
 
 num= int(input())
 
-
-def solution(num,lists):
-        strings = list(input().split())
+def solution(num):
+        lists = deque()
+        strings = input()
+        strings = list(strings)
+        del strings[-1]
+        
         for k in range(len(strings)):
-            try:
              if strings[k] == '(':
-                 lists.append(k)
+                 lists.append(strings[k])
              else:
-                 lists.pop()
-            except:
-                return "NO"
-        return "Yes"        
+                 if len(lists) > 0:
+                     lists.pop()
+                 else:
+                     
+                   return "NO"
+        if len(lists)>0:
+                     return "NO"
+        else:
+                   return "YES"        
         
 for i in range(num):
-    print(solution(num,lists))            
+    print(solution(num))            
