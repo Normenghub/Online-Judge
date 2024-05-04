@@ -2,7 +2,10 @@ strings = input()
 partStrings = input()
 
 
-if partStrings in strings:
-    print(1)
-else:
-    print(0)    
+def solution(strings,partStrings):
+
+ if partStrings in strings:
+     return 1
+ else:
+     return 0
+print(solution(strings,partStrings))       
