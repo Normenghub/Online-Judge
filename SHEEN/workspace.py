@@ -1,3 +1,3 @@
-for i in range(5):
-  i+=1
-  print(i)
+i = 2
+
+print(type(i))

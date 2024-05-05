@@ -1,5 +1,7 @@
+import copy
 import sys
 input = sys.stdin.readline
+'''
 N,M = map(int,input().split())
 Tg, Tb, X, B = map(int,input().split())
 maps = []
@@ -60,6 +62,86 @@ else:
    for zzz in nomordic:
       print(zzz)
 
+''' # 완전탐색 출력 초과
 
-                             
-                    
+# 처음 좌표 저장 해놓기 
+
+N,M = map(int,input().split())
+Tg, Tb, X, B = map(int,input().split())
+maps = []
+recentAddMaps = []
+nomordic = {}
+save = []
+save2 = []
+for qw in range(N):
+    s=input()
+    s=list(s)
+    maps.append(s)
+    for qwe in range(len(s)):
+      if s[qwe] == '*':
+         save.append([qw,qwe])
+         save2.append([qw,qwe])         
+      else:
+         continue
+def NoOutLines(r,c):
+    return 0<= r <= N-1 and 0<= c <= M-1
+dd = [[0,1],[0,-1],[1,0],[-1,0]]
+
+for zz in range(Tg):
+   save = copy.deepcopy(save2)
+   for r,c in save:
+      for dr,dc in dd:
+         drr = dr+r
+         dcc = dc+c
+         if NoOutLines(drr,dcc):
+          if maps[drr][dcc] == '.':
+            maps[drr][dcc] = '*'
+            save2.append([drr,dcc])
+            continue
+          elif maps[drr][dcc] == '*':
+            continue
+          elif maps[drr][dcc] == '#':
+            maps[drr][dcc] = zz
+            continue
+          elif maps[drr][dcc] == '#':
+            maps[drr][dcc] = zz
+            continue
+          elif isinstance(maps[drr][dcc], int):
+             if maps[drr][dcc] == zz-Tb:
+                  maps[drr][dcc] = '*'    
+                  save2.append([drr,dcc])            
+                  continue
+             else:
+                continue
+                
+         else:
+            continue
+      temp =0   
+      for dr, dc in dd:
+         drr = dr+r
+         dcc = dc+c
+         if NoOutLines(drr,dcc) and maps[drr][dcc] == '*':
+           continue
+         else:
+            break
+      if temp ==4:
+         save2.remove([r,c])
+      else:
+         continue      
+
+
+               
+
+for q in range(N):
+   for qq in range(M):
+      if maps[q][qq] == '*':
+         continue
+      else:
+         nomordic[f'{q+1} {qq+1}'] =1
+
+if len(nomordic) == 0:
+   print(-1)
+else:
+   nomordic = sorted(nomordic)
+   for zzz in nomordic:
+      print(zzz)
