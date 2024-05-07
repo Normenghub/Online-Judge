@@ -1,4 +1,5 @@
-a = [[1,1,2,3],1,2]
+a = [1,2,3]
 
-s = a[0].index(min(a[0]))
-print(s)
+for i in a:
+    a.append(2)
+    print(i)
