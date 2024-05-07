@@ -120,3 +120,6 @@ for k in range(n-1):
   result += m+M
 
 print(result)
+
+# 리스트 최솟값 최대값 빨리 찾는 자료구조 
+# 시간 복잡도 더 줄임 (반정렬 상태)
