@@ -1,59 +1,23 @@
-N,M = map(int,input().split())
+import sys
+N, M = map(int, input().split())
+arr = []
 
-time = 0
-saveindex = 0
-nomordic = {}
-maps =[]
-ss = 0
-for i in range(N):
- lists = list(map(int,input().split()))
- maps.append(lists)
- 
- 
- 
- 
-if M > 2: 
- for k in range(N):
-  nomordic = {}
-  index =1 
-  for c in maps[k]:
-   nomordic[index] = c 
-   index +=1
-  maps[ss].sort()
-  sortednomordic = sorted(nomordic.items(), key = lambda item:item[1]) 
+for _ in range(N):
+    arr.append([int(x) for x in sys.stdin.readline().split()])
 
- 
-  if sortednomordic[0][0] == saveindex:
-   if sortednomordic[2][1] < maps[ss+1][2]:
-    saveindex = sortednomordic[2][0]
-    time += sortednomordic[2][1]
-   else:
-    saveindex = sortednomordic[1][0]
-    time += sortednomordic[1][1]  
-  else:
-     saveindex = sortednomordic[0][0]
-     time += sortednomordic[0][1]    
+for z in range(N-1):
+    index = arr[z].index(min(arr[z]))
+    addindex = arr[z][index]
+    del arr[z][index]
+    index2 = arr[z].index(min(arr[z]))
+    addindex2 = arr[z][index2]
+    for zz in range(M):
+        if zz == index:
+          arr[z+1][zz] = arr[z+1][zz] + addindex2
+        else:
+            arr[z+1][zz] = arr[z+1][zz] + addindex   
 
-  ss +=1 
-else:
-  for k in range(N):
-   nomordic = {}
-   index =1 
-   for c in maps[k]:
-    nomordic[index] = c 
-    index +=1  
-   sortednomordic = sorted(nomordic.items(), key = lambda item:item[1]) 
-   if sortednomordic[0][0] == saveindex:
-    saveindex = sortednomordic[1][0]
-    time += sortednomordic[1][1]  
-   else:
-     saveindex = sortednomordic[0][0]
-     time += sortednomordic[0][1]   
+print(min(arr[N-1]))             
+# DP TOP DOWN , overlapping MEMOIJATION
 
 
-
-
-
-print(time) 
-
- 
