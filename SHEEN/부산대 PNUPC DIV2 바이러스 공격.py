@@ -68,3 +68,41 @@ if len(lastList)>=1:
    print(g)
 else:
    print(-1)   
+   '''
+   
+import sys
+input=sys.stdin.readline
+F=lambda:[*map(int,input().split())]
+dx=[1,-1,0,0];dy=[0,0,1,-1]
+INF=1<<30
+
+N,M=F()
+T,B,_,_=F()
+A=[input()for _ in range(N)]
+V=[[INF]*M for _ in range(N)]
+Q=[[]for _ in range(T+1)]
+
+for x in range(N):
+  for y in range(M):
+    if A[x][y]=='*':V[x][y]=0;Q[0].append((x,y))
+t=0
+while t<T:
+  if not Q[t]:t+=1;continue
+  x,y=Q[t].pop()
+  for k in range(4):
+    nx=x+dx[k]; ny=y+dy[k]
+    if nx<0 or nx>=N or ny<0 or ny>=M or V[nx][ny]<INF:continue
+    V[nx][ny]=t+1+B*(A[nx][ny]=='#')
+    if V[nx][ny]<T:Q[V[nx][ny]].append((nx,ny))
+
+ANS=[]
+for x in range(N):
+  for y in range(M):
+    if V[x][y]>T:ANS.append((x+1,y+1))
+if not ANS:print(-1)
+else:
+  for ans in ANS:print(*ans)
+   
+   
+   
+   '''
