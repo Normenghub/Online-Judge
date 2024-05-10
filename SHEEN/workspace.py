@@ -1,68 +1,59 @@
-import sys
-input = sys.stdin.readline
 from collections import deque
-temp =0
-N,M = map(int,input().split())
-Tg, Tb, X, B = map(int,input().split())
-maps = []
-save = deque()
-nomordic={}
-lenn = 0
-buildingSave = deque()
-for Nc in range(N):
-   strings = list(input())
-   maps.append(strings)
-   for elementStrings in range(len(strings)-1):
-      if strings[elementStrings] == '*':
-        save.append([Nc,elementStrings])
-        temp+=1    
-def outLines(r,c):
-   return 0 <=r<= N-1 and 0<=c<=M-1 
-dd= [[0,1],[0,-1],[1,0],[-1,0]]      
-for Tgc in range(Tg):
-   lenn =temp
-   temp = 0
-   for k in range(0, lenn):
-      if maps[save[k][0]][save[k][1]] == '*':
-         for dr,dc in dd:
-            drr = save[k][0] + dr
-            dcc = save[k][1] + dc
-            if  outLines(drr,dcc) and maps[drr][dcc] == '*':           
-              continue
-            elif outLines(drr,dcc) and maps[drr][dcc] == '.':
-             maps[drr][dcc] = '*'        
-             save.append([drr,dcc])
-             temp +=1
-            elif outLines(drr,dcc) and maps[drr][dcc] == '#':   
-             maps[drr][dcc] = 'B'       
-             buildingSave.append([drr,dcc,Tgc])
-            else:
-               continue               
-      else:
-        pass  
-                         
-   if len(buildingSave) >=1: 
-    for _ in range(len(buildingSave)):
-       if buildingSave[0][2] == Tgc-Tb:
-          maps[buildingSave[0][0]][buildingSave[0][1]]= '*'
-          save.append([buildingSave[0][0],buildingSave[0][1]])
-          temp +=1
-          buildingSave.popleft()
-       else:
-             break    
-   for dwa in range(lenn):
-     save.popleft()  
 
-for q in range(N):
-   for qq in range(M):
-      if maps[q][qq] == '*':
-         continue
-      else:
-         nomordic[f'{q+1} {qq+1}'] =1
+def find_safe_zones(N, M, T_G, T_B, X, B, grid):
+    # 바이러스 전파 시뮬레이션
+    virus_queue = deque()
+    safe_zones = []
+    for i in range(N):
+        for j in range(M):
+            if grid[i][j] == '*':
+                virus_queue.append((i, j))
+            elif grid[i][j] == '#':
+                safe_zones.append((i+1, j+1))
 
-if len(nomordic) == 0:
-   print(-1)
-else:
-   nomordic = sorted(nomordic)
-   for zzz in nomordic:
-      print(zzz)
+    while virus_queue:
+        x, y = virus_queue.popleft()
+        for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < N and 0 <= ny < M and grid[nx][ny] != '#':
+                if grid[nx][ny] == '.':
+                    grid[nx][ny] = 'v'
+                    virus_queue.append((nx, ny))
+                elif grid[nx][ny] == '#':
+                    for i in range(T_B):
+                        for j in range(M):
+                            if grid[i][j] == '#':
+                                safe_zones.append((i+1, j+1))
+                    for i in range(T_B, N):
+                        for j in range(M):
+                            if grid[i][j] == '#':
+                                grid[i][j] = 'v'
+                                for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+                                    nx, ny = i + dx, j + dy
+                                    if 0 <= nx < N and 0 <= ny < M and grid[nx][ny] == '.':
+                                        grid[nx][ny] = 'v'
+                                        virus_queue.append((nx, ny))
+
+    # 안전 구역 찾기
+    for i in range(N):
+        for j in range(M):
+            if grid[i][j] == '.' or (grid[i][j] == '#' and i < T_B):
+                safe_zones.append((i+1, j+1))
+
+    if not safe_zones:
+        return [-1]
+    else:
+        safe_zones.sort()
+        return safe_zones
+
+# 입력 받기
+N, M = map(int, input().split())
+T_G, T_B, X, B = map(int, input().split())
+grid = [input() for _ in range(N)]
+
+# 안전 구역 찾기
+safe_zones = find_safe_zones(N, M, T_G, T_B, X, B, grid)
+
+# 출력
+for x, y in safe_zones:
+    print(x, y)

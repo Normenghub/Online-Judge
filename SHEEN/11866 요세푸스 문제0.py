@@ -1,32 +1,22 @@
-N, K = map(int,input().split())
+import sys
+from collections import deque
+input = sys.stdin.readline
+n,m = map(int,input().split())
+arr = deque()
+temp = 1
+saveArr = deque()
+for i in range(1,n+1):
+    arr.append(i)   
 
-arr = []
-savearr = []
-#  1 4 
-#  3 6 2 7 5 1 4
-#  2 4 1 3 2 0 0
-index = K-1
-for i in range(1, N+1):
-    arr.append(i)
+while len(arr) >0:
+   if temp !=m:
+       arr.append(arr.popleft())
+       temp +=1
+   else:
+       saveArr.append(arr.popleft())
+       temp =1
+print('<',end="")
+for k in range(len(saveArr)-1):
+ print(saveArr[k],end=", ")
+print(f'{saveArr[len(saveArr)-1]}>') 
 
-while len(savearr) < N:
-    if index < len(arr)-1:
-        savearr.append(arr[index])
-        del arr[index]
-        index +=2
-    elif index == len(arr)-1:
-        index %= 3
-        savearr.append(arr[index])
-        del arr[index]
-        index +=2
-    else:
-        
-
-
-
-
-
-
-
-print(arr)
-print(savearr)
