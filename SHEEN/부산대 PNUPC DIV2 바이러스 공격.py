@@ -67,7 +67,7 @@ if len(lastList)>=1:
  for g in lastList:
    print(g)
 else:
-   print(-1)   
+   print(-1)    
    '''
    
 import sys
