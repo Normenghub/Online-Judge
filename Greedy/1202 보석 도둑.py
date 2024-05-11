@@ -14,8 +14,10 @@ for asd in Ci:
     while dic and dic[0][0] <= asd:
         heapq.heappush(save, -dic[0][1])
         heapq.heappop(dic)
+        
     if save:
         result -= heapq.heappop(save)
+    print(dic)
 print(result)
 
 
