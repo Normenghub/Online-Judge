@@ -1,33 +1,69 @@
 #include <stdio.h>
-
+void add(int,int,char);
+void substract(int,int,char);
+void multiply(int,int,char);
+void divide(int,int,char);
 int main(){
-    int kor[5] = {90,80,70,60,100};
-    int math[5] = {81,91,81,81,100};
-    int order[5] = {1,1,1,1,1};
-    double avg[5];
-    
-    for(int i =0; i < 5; i++){
-        avg[i] = (double) (kor[i] + math[i])/2;
-    }
-    for (int k = 0; k <4; k++){
-        for (int z= k+1 ; z <=4 ; z++){
-            if (avg[k] > avg[z]){
-                order[z]++;
-            }else if (avg[k] < avg[z]){
-                order[k]++;
-                
-            }
-            
-        }
-        
-    }
-    for (int j = 0; j <5; j++){
-        printf("국어 = %d, 수학 = %d, 평균 = %.2f 석차 = %d ",kor[j],math[j], avg[j],order[j]);
-        
-    }
-    
-    
-    
+
+int num1,num2;
+char opr;
+printf("숫자 2개 입력:");
+scanf("%d%d",&num1,&num2);
+fflush(stdin);
+printf("연산자 입력: ");
+    scanf(" %c", &opr);
+    switch(opr){
+    case '+':
+    add(num1,num2,opr);
+    break;
+    case '-':
+    substract(num1,num2,opr);
+    break;
+    case '*':
+    break;
+    multiply(num1,num2,opr);
+    case '/':
+    divide(num1,num2,opr);
+    break;
+
+
+
+ }
+return 0;
+ }
+
+void add(int n1, int n2, char opr)
+{
+ int result;
+  result= n1 + n2;
+
+  printf("%d %c %d = %d\n",n1,opr,n2,result); 
+
 }
 
-//  85.5 83.5 75.5 70.5 100     2 3 4 5 1
+void substract(int n1, int n2, char opr){
+  int result;
+  result= n1 - n2;
+
+  printf("%d %c %d = %d\n",n1,opr,n2,result); 
+ 
+ 
+
+}void multiply(int n1, int n2, char opr){
+  int result;
+  result= n1 * n2;
+
+  printf("%d %c %d = %d\n",n1,opr,n2,result); 
+ 
+ 
+
+}
+void divide(int n1, int n2, char opr){
+  float result;
+  result= n1 / n2;
+
+  printf("%d %c %d = %f\n",n1,opr,n2,result); 
+ 
+ 
+
+}
