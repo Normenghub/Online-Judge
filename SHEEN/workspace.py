@@ -1,3 +1,5 @@
-a = "ASD"
+s = 1
 
-print(a[:len(a)-1])
+for i in range(s):
+ s =2
+ print(2)
