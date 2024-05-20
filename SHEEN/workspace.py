@@ -1,5 +1,3 @@
-s = 1
+lists = list(map(int,input().split()))
 
-for i in range(s):
- s =2
- print(2)
+print(len(lists))
