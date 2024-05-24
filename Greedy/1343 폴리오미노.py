@@ -1,23 +1,41 @@
-strings = input()
-save = []
-count = 0
-sstrings = ''
-z = 0
-if strings.count('X') % 4 == 0 or strings.count('X') % 2 == 0:
- for i in range(len(strings)):
-    if strings[i] =='.':
-       save.append(count)
-       count = 0
-       continue
+import sys 
+strings = sys.stdin.readline().rstrip()
+saveStrings = ""
+resultStrings = ""
+A = "AAAA"
+B = "BB"
+for s in strings:
+    if s =='.':
+        if len(saveStrings)==0: 
+            resultStrings += '.'
+            continue
+        else:
+            if len(saveStrings) % 4 == 0 or len(saveStrings) % 2 ==0:
+                 lens = len(saveStrings)
+                 As = lens // 4
+                 lens -= (As * 4)
+                 Bs = lens//2
+                 resultStrings += A * As
+                 resultStrings += B * Bs
+                 saveStrings = ""
+                 resultStrings +='.'
+            else:
+               print(-1) 
+               exit()
+        
     else:
-       count+=1 
-       continue
- save.append(count)  
- if 0 in save:
-     save.remove(0)
- print(save)
-  
-   
-else:
-    print(-1)
-    exit()
+        saveStrings += s
+
+if len(saveStrings) > 0:
+             if len(saveStrings) % 4 == 0 or len(saveStrings) % 2 ==0:
+                 lens = len(saveStrings)
+                 As = lens // 4
+                 lens -= (As * 4)
+                 Bs = lens//2
+                 resultStrings += A * As
+                 resultStrings += B * Bs
+                 saveStrings = ""
+             else:
+               print(-1) 
+               exit()  
+print(resultStrings)                        

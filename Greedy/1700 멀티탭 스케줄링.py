@@ -1,5 +1,5 @@
 '''
-숫자 세 개 중에 제일 뒤에 있는 세끼 냅두기 젤 빠른세끼 빼기 중복 제거 
+belady's min algorithm Optimal page change
 '''
 
 import sys
