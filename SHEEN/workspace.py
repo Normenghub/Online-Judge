@@ -1,2 +1,3 @@
 s = 'asdqwe'
-print(s[:2])
+for i in range(len(s)-1,len(s)-3,-1):
+    print(s[i])
