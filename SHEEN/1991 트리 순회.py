@@ -22,7 +22,14 @@ else:
     # 각각 트리 순환
      # 재귀로 푸는게 제일 빠름 .
         result = ""
-        def preorder(tree):
-            
+        def preorder(tree,result):
+            pass
+        def inorder(treem,result):
+            pass
+        def postorder(tree,result):
+            pass
+        print(preorder(tree,result))
+        print(inorder(tree,result))
+        print(postorder(tree,result))
 
-
+  
