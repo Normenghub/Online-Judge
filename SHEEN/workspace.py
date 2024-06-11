@@ -1,3 +1,2 @@
 a = 'aefdd'
-d = a.count('d')
-print(d)
+print(a[:len(a)-1])
