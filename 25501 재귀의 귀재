@@ -10,5 +10,3 @@ count = 0
 for i in range(int(input())):
     s = input()
     print(f"{isPalindrome(s)[0]} {len(s) - int(isPalindrome(s)[2:])}")
-print('ABBA:', isPalindrome('ABBA'))
-print('ABC:', isPalindrome('ABC'))
