@@ -1,6 +1,5 @@
 n, attack = map(int,input().split())
-maxhp = 0
-hp = 0
+maxhp, hp  = 0
 for _ in range(n):
  a, b, c = map(int,input().split())
  if a == 1:
@@ -13,6 +12,3 @@ for _ in range(n):
    else:  hp += c
 if maxhp > hp: maxhp = hp
 print(abs(maxhp)+1)
-  
-
-
