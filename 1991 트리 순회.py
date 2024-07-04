@@ -1,35 +1,39 @@
 import sys
-imput = sys.stdin.readline
+input = sys.stdin.readline
 n = int(input())
-if n == 1:
+alphbet =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+dic = {}
+for i in range(n):
+    dic[alphbet[i]] = []
+for _ in range(n):
     a,b,c = map(str,input().split())
-    for _ in range(3):
-        print(a)
-else:
-    # 트리 생성
-    treeSize = 0
-    for i in range(0,n):
-      treeSize += 2 **(i)
-    tree = [0] * treeSize
-    tree[1]= 'A'
-    for i in range(n):
-        x = list(map(str,input().split()))
-        indexs = tree.index(x[0])
-        if x[1] != '.':
-             tree[indexs * 2] = x[1]
-        if x[2] != '.':
-             tree[indexs * 2 +1] = x[2]
-    # 각각 트리 순환
-     # 재귀로 푸는게 제일 빠름 .
-        result = ""
-        def preorder(tree,result):
-            pass
-        def inorder(treem,result):
-            pass
-        def postorder(tree,result):
-            pass
-        print(preorder(tree,result))
-        print(inorder(tree,result))
-        print(postorder(tree,result))
-
-  
+    dic[a].append(b)
+    dic[a].append(c)
+def preorder(dic,s):
+    print(s,end="")
+    if dic[s][0] != '.':
+        preorder(dic,dic[s][0])
+    if dic[s][1] != '.':
+        preorder(dic,dic[s][1])
+preorder(dic,'A')
+print()
+def inorder(dic, s):
+    if s == '.':
+        return
+    if dic[s][0] != '.':
+        inorder(dic, dic[s][0])
+    print(s, end = "")
+    if dic[s][1] != '.':
+        inorder(dic, dic[s][1])
+def postorder(dic,s):
+    if s == '.':
+        return
+    if dic[s][0] != '.':
+        inorder(dic, dic[s][1])
+    if dic[s][1] != '.':
+        inorder(dic, dic[s][0])
+    print(s, end = "")
+    
+inorder(dic,'A')
+print()
+postorder(dic,'A')
