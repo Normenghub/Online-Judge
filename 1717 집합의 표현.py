@@ -22,12 +22,13 @@ def union(arr,a,b):
 
 for i in range(m):  
   a,b,c = map(int,input().split())
-  if b==c:
-        print("YES")
-  elif a == 0:
+  if a == 0:
         union(arr,b,c)
+
   elif a == 1:
-        if findParents(arr,b) == findParents(arr,c):
+        if b==c:
+         print("YES")
+        elif findParents(arr,b) == findParents(arr,c):
               print("YES")
         else:
               print("NO")
