@@ -11,5 +11,5 @@ for i in range(1,k+1):
 for i in range(1,k+1):
     for z in range(2,n+1):
         dp[i][z] = dp[i][z-1] + dp[i-1][z]
-print(dp)
+
 print(dp[k][n]%1000000000)
