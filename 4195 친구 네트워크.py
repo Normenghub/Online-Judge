@@ -1,6 +1,5 @@
 import sys
 input = sys.stdin.readline
-howMany = {}
 def whoParent(a):
     if friend[a] == a:
         return a 
@@ -32,6 +31,7 @@ def friendCheck(a):
 
 for _ in range(int(input())):
     friend = dict()
+    howMany = {}
     for _ in range(int(input())):
         person1,person2 = map(str,input().split())
         friendCheck(person1)
