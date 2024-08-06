@@ -2,40 +2,36 @@ import sys
 import heapq
 input = sys.stdin.readline
 
-v,e = map(int,input().split())
+n , k =map(int,input().split())
 
-result = 0
-maxs = 0
+arr = [[] for _ in range(n+1)]
+tf = [False] * (k+1)
+tree = [0] * (k+1)
 
 q = []
-arr=[[] for _ in range(v+1)]
+result = 0
+maxs= 0
 
-tf = [False] * (v+1)
-
-for _ in range(e):
+for _ in range(k):
     a,b,c = map(int,input().split())
     arr[a].append((c,b))
-    arr[b].append((c,a))
-
-def MST(start):
-    tf[start] = True
-    for i in arr[start]:
+def MST(v):
+    global maxs
+    
+    tf[v] = True
+    for i in arr[v]:
         heapq.heappush(q,i)
     while q:
-        global result,maxs
-        price, num = heapq.heappop(q)
-        if tf[num]:
+        price,start = heapq.heappop(q)
+        if tf[start]:
             continue
-        tf[num] = True
-        result += price
+        tf[start] = True
+        result +=price
         maxs = max(maxs,price)
-        for i in arr[num]:
-            if tf[i[1]]:
-                continue
-            else:
+        for i in arr[start]:
+            if not tf[i[1]]:
                 heapq.heappush(q,i)
 
-
 MST(1)
-
 print(result - maxs)
+    
